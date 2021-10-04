@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="icon" href="static/favicon.ico">
+    <title>Look For 富婆</title>
+  </head>
+  <body>
+  <form class="needs-validation" action="/" method="POST">
+    <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <select name="age" class="custom-select" id="age">
+        <option selected disabled value="">请选择年龄区间：</option>
+        <option value="18-25">18岁～25岁</option>
+        <option value="26-30">26岁～30岁</option>
+        <option value="31-40">31岁～40岁</option>
+        <option value="41-50">41岁～50岁</option>
+        <option value="51-100">51岁以上</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select name="face" class="custom-select" id="face">
+        <option selected disabled value="">请选择颜值区间：</option>
+        <option value="80-100">80分以上</option>
+        <option value="60-80">60分～80分</option>
+        <option value="40-60">40分～60分</option>
+        <option value="30-40">30分～40分</option>
+        <option value="0-20">20分以下</option>
+      </select>
+    </div>
+      <div class="col-md-3 mb-3">
+      <select name="area" class="custom-select" id="area">
+        <option selected disabled value="">请选择地区：</option>
+        <option value="广东">广东省</option>
+        <option value="四川">四川省</option>
+        <option value="湖南">湖南省</option>
+        <option value="湖北">湖北省</option>
+        <option value="广西">广西省</option>
+      </select>
+    </div>
+      <button style="height:38px" type="submit" class="btn btn-outline-primary">查询</button>
+    </div>
+</form>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <div class="row row-cols-1 row-cols-md-3">
+      {% for item in data %}
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="data:;base64,{{ item.get('img')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="h5">{{ item.get('name')}}&nbsp;&nbsp;{{ item.get('age')}}岁&nbsp;&nbsp;{{ item.get('area')}}&nbsp;&nbsp;P{{ item.get('how') }}&nbsp;&nbsp;{{ item.get('score') }}分</p>
+            <p class="card-text">座右铭：{{ item.get('content')}}</p><br>
+            <a href="{{ item.get('url') }}" class="btn btn-primary" target="_blank">详细资料</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+  {% if flag %}
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="/next">Next</a></li>
+  </ul>
+</nav>
+  {% endif %}
+  </body>
+<div style=" position:fixed; right:0px; bottom:10px; width:20px; height:100px; background-color:#FFFFF; cursor:pointer" id="toTop" onclick="toTop()">返回顶部</div>
+<script>
+function toTop(){window.scroll(0,0);}
+</script>
+</html>
